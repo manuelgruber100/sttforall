@@ -36,5 +36,8 @@ export class UserService {
     });
     return returnVal;
   }
+  getOneSpecificUser(id:number){
+    return this.http.get<Person>(this.globals.apiUrl + "/people/"+id)
+  }
 
 }

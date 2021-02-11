@@ -59,6 +59,10 @@ const routes: Routes = [
     path: 'list-view-times-modal',
     loadChildren: () => import('./list-view-times-modal/list-view-times-modal.module').then( m => m.ListViewTimesModalPageModule)
   },
+  {
+    path: 'time-detail-page',
+    loadChildren: () => import('./time-detail-page/time-detail-page.module').then( m => m.TimeDetailPagePageModule)
+  },
 
 ];
 

@@ -10,5 +10,42 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            Date
+          </ion-col>
+          <ion-col>
+            Hours
+          </ion-col>
+          <ion-col>
+            User
+          </ion-col>
+          <ion-col>
+            Details
+          </ion-col>
+        </ion-row>
 
+
+        <ion-row *ngFor="let time of times">
+          <ion-col>
+            {{time.date | date:'dd.MM.YYYY'}}
+          </ion-col>
+          <ion-col>
+            {{time.workedHours}}
+          </ion-col>
+          <ion-col>
+            {{time.username}}
+          </ion-col>
+          <ion-col>
+            <ion-chip color="Secondary" (click)="viewDetailsTimeModal(time)">
+              <ion-icon name="help-circle-outline"></ion-icon>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
