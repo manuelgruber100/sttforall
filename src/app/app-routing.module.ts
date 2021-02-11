@@ -63,6 +63,10 @@ const routes: Routes = [
     path: 'time-detail-page',
     loadChildren: () => import('./time-detail-page/time-detail-page.module').then( m => m.TimeDetailPagePageModule)
   },
+  {
+    path: 'percentage-list-modal',
+    loadChildren: () => import('./percentage-list-modal/percentage-list-modal.module').then( m => m.PercentageListModalPageModule)
+  },
 
 ];
 

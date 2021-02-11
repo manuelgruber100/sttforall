@@ -1,3 +1,4 @@
+import { PercentageListModalPage } from './../percentage-list-modal/percentage-list-modal.page';
 import { UserService } from './../services/user.service';
 import { ListViewTimesModalPage } from './../list-view-times-modal/list-view-times-modal.page';
 import { TimeService } from './../services/time.service';
@@ -18,7 +19,7 @@ export class ControllingModalPage implements OnInit {
   project: Project;
   @ViewChild('doughnutCanvas', { static: true }) private doughnutCanvas: ElementRef;
   doughnutChart: any;
-  constructor(private modalController: ModalController, private times: TimeService, private userService:UserService) {
+  constructor(private modalController: ModalController, private times: TimeService, private userService: UserService) {
 
   }
 
@@ -39,7 +40,7 @@ export class ControllingModalPage implements OnInit {
         'rgba(54, 162, 235, 0.2)',
         'rgba(255, 206, 86, 0.2)',
         'rgba(75, 192, 192, 0.2)'
-    ]
+      ]
 
       timeData.forEach(element => {
         labelsData.push(element.name)
@@ -58,7 +59,7 @@ export class ControllingModalPage implements OnInit {
               colorScheme.toString()
             ],
             hoverBackgroundColor: [
-              
+
 
             ]
           }]
@@ -70,23 +71,23 @@ export class ControllingModalPage implements OnInit {
 
   }
   async showListViewTimes() {
-   var timesForModal:TimeWithUsername[]=[];
+    var timesForModal: TimeWithUsername[] = [];
     this.times.getTimesFromProject(this.project.id).subscribe(async t => {
       t.forEach(element => {
-        var temp:TimeWithUsername=<TimeWithUsername>{
-          
+        var temp: TimeWithUsername = <TimeWithUsername>{
+
         };
-        temp.id=element.id;
-        temp.date=element.date;
-        temp.comment=element.comment;
-        temp.userId=element.userId;
-        temp.projectId=element.projectId;
-        temp.activity=element.activity;
-        temp.account=element.account;
-        temp.workedHours=element.workedHours;
-        this.userService.getOneSpecificUser(element.userId).subscribe(p=>{
-          temp.username=p.prename+" "+p.name;
-          temp.userrole=p.role;
+        temp.id = element.id;
+        temp.date = element.date;
+        temp.comment = element.comment;
+        temp.userId = element.userId;
+        temp.projectId = element.projectId;
+        temp.activity = element.activity;
+        temp.account = element.account;
+        temp.workedHours = element.workedHours;
+        this.userService.getOneSpecificUser(element.userId).subscribe(p => {
+          temp.username = p.prename + " " + p.name;
+          temp.userrole = p.role;
           timesForModal.push(temp);
         })
       });
@@ -104,11 +105,17 @@ export class ControllingModalPage implements OnInit {
       console.log("error", e)
     })
   }
-  dynamicColor():string {
-    var r = Math.floor(Math.random() * 255);
-    var g = Math.floor(Math.random() * 255);
-    var b = Math.floor(Math.random() * 255);
-    return "rgb(" + r + "," + g + "," + b + ")";
+
+
+  async percentageList() {
+    const modal = await this.modalController.create({
+      component: PercentageListModalPage,
+      componentProps: {
+        proId: this.project.id,
+      },
+      cssClass: 'my-class'
+    });
+    return await modal.present();
   }
 
 

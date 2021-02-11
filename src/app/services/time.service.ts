@@ -67,4 +67,13 @@ export class TimeService {
   getTimesSummary(id:number){
     return this.http.get<TimeSummaryFromUser[]>(this.globals.apiUrl + "/times/from/project/perUser/" + id);
   }
+  getSummaryFromUser(proId:number,userId:number){
+    return this.http.get<TimeSummaryFromUser>(this.globals.apiUrl + "/times/from/project/perUser/" + proId+"/"+userId);
+  }
+  getTimesFromProjectSortedByDate(proId:number){
+    return this.http.get<Time[]>(this.globals.apiUrl + "/times/from/project/" + proId+"/byDate");
+  }
+  getTimesFromProjectSortedByUser(proId:number){
+    return this.http.get<Time[]>(this.globals.apiUrl + "/times/from/project/" + proId+"/byUser");
+  }
 }

@@ -1,3 +1,4 @@
+import { TimeService } from './../services/time.service';
 import { Time } from './../models/allModels';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimeDetailPagePage implements OnInit {
   time:Time;
-  constructor() { }
+  proId:number;
+  sum:number=0;
+  name:string="";
+  constructor(private times:TimeService) {
+    
+   }
 
   ngOnInit() {
+    this.times.getSummaryFromUser(this.proId,this.time.userId).subscribe(s=>{
+      this.sum=s.sum;
+      this.name=s.name;
+    })
   }
 
 }

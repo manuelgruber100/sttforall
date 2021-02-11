@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Percentage list of times</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        Name
+      </ion-col>
+      <ion-col>
+        Hours
+      </ion-col>
+      <ion-col>
+        Percentage
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let item of summary">
+      <ion-col>
+        {{item.name}}
+      </ion-col>
+      <ion-col>
+        {{item.sum}}
+      </ion-col>
+      <ion-col>
+        {{test(item.sum)}}%
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

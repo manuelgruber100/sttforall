@@ -12,6 +12,19 @@
 <ion-content>
   <ion-grid>
     <ion-row>
+      
+      <ion-col>
+        <ion-select (ionChange)="orderTimesBy()" [(ngModel)]="itemChecked" placeholder="Select order-aspect" okText="Okay" cancelText="Cancel">
+          <ion-select-option value="Date">Date</ion-select-option>
+          <ion-select-option value="User">User</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="resetFilter()" >Reset</ion-button>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row>
       <ion-col>
         <ion-row>
           <ion-col>
