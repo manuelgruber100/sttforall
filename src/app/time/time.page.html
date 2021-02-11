@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Time management</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-chip color="Secondary" (click)="presentModalAdd()">
+            <ion-icon name="add-circle-outline" color="primary"></ion-icon>
+            <ion-label>Add</ion-label>
+          </ion-chip>
+        </ion-col>
+        <ion-col>
+          <ion-chip color="Secondary" (click)="presentModalFilter()">
+            <ion-icon name="filter-circle-outline" color="primary"></ion-icon>
+            <ion-label>Filter</ion-label>
+          </ion-chip>
+        </ion-col>
+        <ion-col>
+          <ion-chip color="Secondary" (click)="removeFilter()">
+            <ion-icon name="close-circle-outline" color="primary"></ion-icon>
+            <ion-label>Clean Filter</ion-label>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            Date
+          </ion-col>
+          <ion-col>
+            Hours
+          </ion-col>
+          <ion-col>
+            Comment
+          </ion-col>
+          <ion-col>
+            Project
+          </ion-col>
+          <ion-col>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row *ngFor="let time of usertimes">
+          <ion-col>
+            {{time.date | date:'dd.MM.YYYY'}}
+          </ion-col>
+          <ion-col>
+            {{time.workedHours}}
+          </ion-col>
+          <ion-col>
+            {{time.comment}}
+          </ion-col>
+          <ion-col>
+            <ion-badge (click)="viewProjectDetailsOpenModal(time.projectId)">{{time.projectId}}</ion-badge>
+          </ion-col>
+          <ion-col>
+            <ion-chip color="secondary" (click)="presentModalEdit(time)">
+              <ion-icon name="create-outline" color="dark"></ion-icon>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

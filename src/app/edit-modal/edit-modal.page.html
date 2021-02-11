@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Filter times</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p>Start Date:</p>
+      </ion-col>
+      <ion-col>
+        <p>End Date:</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-input type="date" [(ngModel)]="startDateFilter"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-input type="date" [(ngModel)]="endDateFilter"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Filter by project:</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label>Project</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-input type="text" [(ngModel)]="proSelectModel" placeholder="1,2,..."></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="exploreProjects()">
+          Explore Projects
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        Order by:
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+
+        <ion-radio-group [(ngModel)]="radioModel">
+
+          <ion-item>
+            <ion-label>ID</ion-label>
+            <ion-radio slot="start" value="id"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-radio slot="start" value="date"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Activity</ion-label>
+            <ion-radio slot="start" value="ac"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Worked Hours</ion-label>
+            <ion-radio slot="start" value="wh"></ion-radio>
+          </ion-item>
+
+        </ion-radio-group>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="setFilter()">
+          Set Filter
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

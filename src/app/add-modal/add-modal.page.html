@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Time</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+
+
+    <ion-row>
+      <ion-col>
+        <p>Here you can easily add your times.</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Date: </p>
+      </ion-col>
+      <ion-col>
+        <ion-input type="date" clearInput="true" [(ngModel)]="timeCache.date"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Comment: </p>
+      </ion-col>
+      <ion-col>
+        <ion-input placeholder="Comment" type="text" clearInput="true" [(ngModel)]="timeCache.comment"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Account: </p>
+      </ion-col>
+      <ion-col>
+        <ion-input placeholder="Account" type="text" clearInput="true" [(ngModel)]="timeCache.account"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Activity: </p>
+      </ion-col>
+      <ion-col>
+        <ion-select placeholder="Select One" [(ngModel)]="timeCache.activity">
+          <ion-select-option value="a">a - administration</ion-select-option>
+          <ion-select-option value="b">b - bugfixing</ion-select-option>
+          <ion-select-option value="c">c - coding</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Worked hours: </p>
+      </ion-col>
+      <ion-col>
+        <ion-input type="number" [(ngModel)]="timeCache.workedHours"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Project: </p>
+      </ion-col>
+      <ion-col>
+        <ion-input type="number" [(ngModel)]="timeCache.projectId"></ion-input>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="exploreProjects()">Explore projects</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="addTime()">Save</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

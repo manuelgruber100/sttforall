@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Project management</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        <ion-chip color="Secondary" (click)="loadYourProjects()">
+          <ion-icon name="person-outline" color="primary"></ion-icon>
+          <ion-label>Your projects</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col>
+        <ion-chip color="Secondary" (click)="loadAllProjects()">
+          <ion-icon name="people-outline" color="primary"></ion-icon>
+          <ion-label>All projects</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-toolbar>
+                <ion-searchbar color="primary" (ionInput)="FilterJSONData($event)"></ion-searchbar>
+              </ion-toolbar>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col  *ngFor="let item of projects">
+              <ion-card>
+                <ion-item>
+                  <ion-icon name="briefcase-outline"></ion-icon>
+                  <ion-label>{{item.title}}</ion-label>
+      
+                </ion-item>
+
+                <ion-card-content>
+                  
+                  {{item.description}}
+                  <br/><br/><ion-button fill="outline" slot="end" (click)="viewProjectDetails(item.id)">View</ion-button>
+                  <ion-button fill="outline" slot="end" (click)="controllingWindowPresent(item.id)">Controlling</ion-button>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+</ion-content>

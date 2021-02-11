@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Project Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+        <ion-card>
+          <img [src]="imglink"/>
+          <ion-card-header>
+            <ion-card-subtitle>{{item.currentType}}</ion-card-subtitle>
+            <ion-card-title>{{item.title}}</ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            {{item.description}}<br/><br/>
+            <ion-grid>
+
+              <ion-row>
+                <ion-col>
+                  ID:
+                </ion-col>
+                <ion-col>
+                  {{item.id}}
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  Status:
+                </ion-col>
+                <ion-col>
+                  {{item.status}}
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  Effort in Days:
+                </ion-col>
+                <ion-col>
+                  {{item.actualEffortInDays}}
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  Applicant Name:
+                </ion-col>
+                <ion-col>
+                  {{item.applicantUnit}}
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  Applicant ID:
+                </ion-col>
+                <ion-col>
+                  {{item.applicantName}}
+                </ion-col>
+              </ion-row>
+
+
+              <ion-row>
+                <ion-col>
+                  Decision State:
+                </ion-col>
+                <ion-col>
+                  {{item.decisionState}}
+                </ion-col>
+              </ion-row>
+
+              
+              <ion-row>
+                <ion-col>
+                  Due Date:
+                </ion-col>
+                <ion-col>
+                  {{item.dueDate}}
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  Rejected Date:
+                </ion-col>
+                <ion-col>
+                  {{item.rejectedDate}}
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  Account token:
+                </ion-col>
+                <ion-col>
+                  {{item.account}}
+                </ion-col>
+              </ion-row>
+
+            </ion-grid>
+
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
