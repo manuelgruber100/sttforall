@@ -9,27 +9,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./percentage-list-modal.page.scss'],
 })
 export class PercentageListModalPage implements OnInit {
-  proId:number;
-  summary:TimeSummaryFromUser[];
-  constructor(private timeService:TimeService, private modalController:ModalController) { }
+  proId: number;
+  summary: TimeSummaryFromUser[];
+  constructor(private timeService: TimeService, private modalController: ModalController) { }
 
   ngOnInit() {
-    this.timeService.getTimesSummary(this.proId).subscribe(s=>{
-      this.summary=s;
+    this.timeService.getTimesSummary(this.proId).subscribe(s => {
+      this.summary = s;
     })
   }
-  test(hours:number):string{
-    var cachesum=0;
+  test(hours: number): string {
+    var cachesum = 0;
     this.summary.forEach(element => {
-      cachesum+=element.sum;
+      cachesum += element.sum;
     });
 
-    var sol= (hours/cachesum)*100
-    
+    var sol = (hours / cachesum) * 100
+
     return (Math.round(sol * 100) / 100).toFixed(2);;
   }
   closeModal() {
     this.modalController.dismiss();
+  }
+  FilterJSONData(ev: any) {
+    this.timeService.getTimesSummary(this.proId).subscribe(s => {
+      this.summary = s;
+
+      //filter by searchterm
+      const val = ev.target.value;
+
+      if (val && val.trim() != '') {
+        this.summary = this.summary.filter((item) => {
+          return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+      }
+    })
   }
 
 }

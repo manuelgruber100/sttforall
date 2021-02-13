@@ -13,6 +13,14 @@
   <ion-grid>
     <ion-row>
       <ion-col>
+        <ion-toolbar>
+          <ion-searchbar placeholder="Search user" color="primary" (ionInput)="FilterJSONData($event)">
+          </ion-searchbar>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
         Name
       </ion-col>
       <ion-col>
