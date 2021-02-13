@@ -18,9 +18,15 @@ import { ModalController } from '@ionic/angular';
 })
 export class TimePage implements OnInit {
   usertimes: Time[];
+  columns:any;
 
   constructor(private times: TimeService, public modalController: ModalController, private projects:ProjectService) {
     const singleton = Singleton.getInstance();
+    this.columns = [
+      { name: 'Name' },
+      { name: 'Company' },
+      { name: 'Genre' }
+    ];
     times.loadAllTimesForUser(singleton.getLoggedInUser().socialSecurityNumber).subscribe(
       res => {
         this.usertimes = res;

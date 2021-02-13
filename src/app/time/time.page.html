@@ -35,42 +35,41 @@
 
   </ion-toolbar>
 
-
   <ion-grid>
     <ion-row>
       <ion-col>
         <ion-row>
-          <ion-col>
+          <ion-col class="tablehead">
             Date
-          </ion-col>
-          <ion-col>
+          </ion-col >
+          <ion-col class="tablehead">
             Hours
           </ion-col>
-          <ion-col>
+          <ion-col class="tablehead">
             Comment
           </ion-col>
-          <ion-col>
+          <ion-col class="tablehead">
             Project
           </ion-col>
-          <ion-col>
+          <ion-col class="tablehead">
           </ion-col>
         </ion-row>
 
 
         <ion-row *ngFor="let time of usertimes">
-          <ion-col>
+          <ion-col class="tablerow">
             {{time.date | date:'dd.MM.YYYY'}}
           </ion-col>
-          <ion-col>
+          <ion-col class="tablerow">
             {{time.workedHours}}
           </ion-col>
-          <ion-col>
+          <ion-col class="tablerow">
             {{time.comment}}
           </ion-col>
-          <ion-col>
+          <ion-col class="tablerow">
             <ion-badge (click)="viewProjectDetailsOpenModal(time.projectId)">{{time.projectId}}</ion-badge>
           </ion-col>
-          <ion-col>
+          <ion-col class="tablerow">
             <ion-chip color="secondary" (click)="presentModalEdit(time)">
               <ion-icon name="create-outline" color="dark"></ion-icon>
             </ion-chip>
