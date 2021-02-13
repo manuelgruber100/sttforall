@@ -1,5 +1,5 @@
 
-import { Time, TimeSummaryFromUser } from './../models/allModels';
+import { Time, TimeSummaryFromUser, TimeWithUsername } from './../models/allModels';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -62,7 +62,7 @@ export class TimeService {
     this._refreshNeededAdd.next();
   }
   getTimesFromProject(id:number){
-    return this.http.get<Time[]>(this.globals.apiUrl + "/times/from/project/" + id);
+    return this.http.get<TimeWithUsername[]>(this.globals.apiUrl + "/times/from/project/" + id);
   }
   getTimesSummary(id:number){
     return this.http.get<TimeSummaryFromUser[]>(this.globals.apiUrl + "/times/from/project/perUser/" + id);
@@ -71,9 +71,9 @@ export class TimeService {
     return this.http.get<TimeSummaryFromUser>(this.globals.apiUrl + "/times/from/project/perUser/" + proId+"/"+userId);
   }
   getTimesFromProjectSortedByDate(proId:number){
-    return this.http.get<Time[]>(this.globals.apiUrl + "/times/from/project/" + proId+"/byDate");
+    return this.http.get<TimeWithUsername[]>(this.globals.apiUrl + "/times/from/project/" + proId+"/byDate");
   }
   getTimesFromProjectSortedByUser(proId:number){
-    return this.http.get<Time[]>(this.globals.apiUrl + "/times/from/project/" + proId+"/byUser");
+    return this.http.get<TimeWithUsername[]>(this.globals.apiUrl + "/times/from/project/" + proId+"/byUser");
   }
 }

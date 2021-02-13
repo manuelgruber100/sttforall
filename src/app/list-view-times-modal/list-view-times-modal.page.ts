@@ -46,89 +46,34 @@ export class ListViewTimesModalPage implements OnInit {
   }
   ordertimeswithuser() {
     this.times = [];
-    var timesForModal: TimeWithUsername[] = [];
-
     this.timeService.getTimesFromProjectSortedByUser(this.project.id).subscribe(t => {
-      t.forEach(element => {
-        var temp: TimeWithUsername = <TimeWithUsername>{
-        };
-        temp.id = element.id;
-        temp.date = element.date;
-        temp.comment = element.comment;
-        temp.userId = element.userId;
-        temp.projectId = element.projectId;
-        temp.activity = element.activity;
-        temp.account = element.account;
-        temp.workedHours = element.workedHours;
-        timesForModal.push(temp);
-      });
-      timesForModal.forEach(element => {
-        console.log(element.userId)
-        this.userService.getOneSpecificUser(element.userId).subscribe(u=>{
-          element.username=u.prename+" "+u.name;
-          element.userrole=u.role;
-        })
-      });
-      this.times = timesForModal;
-
-
-
+      this.times = t;
     });
-    
   }
   ordertimeswithdate() {
     this.times = [];
-    var timesForModal: TimeWithUsername[] = [];
-
     this.timeService.getTimesFromProjectSortedByDate(this.project.id).subscribe(t => {
-      t.forEach(element => {
-        var temp: TimeWithUsername = <TimeWithUsername>{
-        };
-        temp.id = element.id;
-        temp.date = element.date;
-        temp.comment = element.comment;
-        temp.userId = element.userId;
-        temp.projectId = element.projectId;
-        temp.activity = element.activity;
-        temp.account = element.account;
-        temp.workedHours = element.workedHours;
-        timesForModal.push(temp);
-      });
-      timesForModal.forEach(element => {
-        console.log(element.userId)
-        this.userService.getOneSpecificUser(element.userId).subscribe(u=>{
-          element.username=u.prename+" "+u.name;
-          element.userrole=u.role;
-        })
-      });
-      this.times = timesForModal;
-
-
-
+      this.times = t;
     });
   }
   resetFilter() {
-    var timesForModal: TimeWithUsername[] = [];
-    this.timeService.getTimesFromProject(this.project.id).subscribe(async t => {
-      t.forEach(element => {
-        var temp: TimeWithUsername = <TimeWithUsername>{
-        };
-        temp.id = element.id;
-        temp.date = element.date;
-        temp.comment = element.comment;
-        temp.userId = element.userId;
-        temp.projectId = element.projectId;
-        temp.activity = element.activity;
-        temp.account = element.account;
-        temp.workedHours = element.workedHours;
-        this.userService.getOneSpecificUser(element.userId).subscribe(p => {
-          temp.username = p.prename + " " + p.name;
-          temp.userrole = p.role;
-          timesForModal.push(temp);
-        })
-      });
+    this.timeService.getTimesFromProject(this.project.id).subscribe(t => {
+      this.times = t;
     })
-    this.times = timesForModal;
+
+  }
+  FilterJSONData(ev: any) {
+    this.timeService.getTimesFromProject(this.project.id).subscribe(t => {
+      this.times = t;
+      //filter by searchterm
+      const val = ev.target.value;
+
+      if (val && val.trim() != '') {
+        this.times = this.times.filter((item) => {
+          return (item.username.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        })
+      }
+    })
   }
 }
 

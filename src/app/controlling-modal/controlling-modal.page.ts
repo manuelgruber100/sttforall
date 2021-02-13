@@ -73,25 +73,7 @@ export class ControllingModalPage implements OnInit {
   async showListViewTimes() {
     var timesForModal: TimeWithUsername[] = [];
     this.times.getTimesFromProject(this.project.id).subscribe(async t => {
-      t.forEach(element => {
-        var temp: TimeWithUsername = <TimeWithUsername>{
-
-        };
-        temp.id = element.id;
-        temp.date = element.date;
-        temp.comment = element.comment;
-        temp.userId = element.userId;
-        temp.projectId = element.projectId;
-        temp.activity = element.activity;
-        temp.account = element.account;
-        temp.workedHours = element.workedHours;
-        this.userService.getOneSpecificUser(element.userId).subscribe(p => {
-          temp.username = p.prename + " " + p.name;
-          temp.userrole = p.role;
-          timesForModal.push(temp);
-        })
-      });
-
+      timesForModal = t;
       const modal = await this.modalController.create({
         component: ListViewTimesModalPage,
         componentProps: {
@@ -101,9 +83,9 @@ export class ControllingModalPage implements OnInit {
         cssClass: 'my-class'
       });
       return await modal.present();
-    }, e => {
-      console.log("error", e)
-    })
+    });
+
+
   }
 
 

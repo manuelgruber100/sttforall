@@ -33,14 +33,7 @@ export interface TimeSummaryFromUser {
     name: string;
 }
 export interface TimeWithUsername {
-    id: number;
-    date: Date;
-    comment: string;
-    userId: number;
-    projectId: number;
-    activity: string;
-    account: string;
-    workedHours: number;
+    baseTime:Time
     username:string;
     userrole:string;
 }

@@ -12,18 +12,29 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      
+
       <ion-col>
-        <ion-select (ionChange)="orderTimesBy()" [(ngModel)]="itemChecked" placeholder="Select order-aspect" okText="Okay" cancelText="Cancel">
+        <ion-select (ionChange)="orderTimesBy()" [(ngModel)]="itemChecked" placeholder="Select order-aspect"
+          okText="Okay" cancelText="Cancel">
           <ion-select-option value="Date">Date</ion-select-option>
           <ion-select-option value="User">User</ion-select-option>
         </ion-select>
       </ion-col>
       <ion-col>
-        <ion-button (click)="resetFilter()" >Reset</ion-button>
+        <ion-button (click)="resetFilter()">Reset</ion-button>
       </ion-col>
-      
     </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-toolbar>
+          <ion-searchbar placeholder="Search user" color="primary" (ionInput)="FilterJSONData($event)">
+          </ion-searchbar>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row>
+
+
     <ion-row>
       <ion-col>
         <ion-row>
@@ -44,10 +55,10 @@
 
         <ion-row *ngFor="let time of times">
           <ion-col>
-            {{time.date | date:'dd.MM.YYYY'}}
+            {{time.baseTime.date | date:'dd.MM.YYYY'}}
           </ion-col>
           <ion-col>
-            {{time.workedHours}}
+            {{time.baseTime.workedHours}}
           </ion-col>
           <ion-col>
             {{time.username}}
