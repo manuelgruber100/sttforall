@@ -67,6 +67,14 @@ const routes: Routes = [
     path: 'percentage-list-modal',
     loadChildren: () => import('./percentage-list-modal/percentage-list-modal.module').then( m => m.PercentageListModalPageModule)
   },
+  {
+    path: 'edit-rights-modal',
+    loadChildren: () => import('./edit-rights-modal/edit-rights-modal.module').then( m => m.EditRightsModalPageModule)
+  },
+  {
+    path: 'add-user-to-project-modal',
+    loadChildren: () => import('./add-user-to-project-modal/add-user-to-project-modal.module').then( m => m.AddUserToProjectModalPageModule)
+  },
 
 ];
 

@@ -1,3 +1,4 @@
+import { ProjectService } from './../services/project.service';
 import { UserService } from './../services/user.service';
 import { TimeService } from './../services/time.service';
 import { TimeDetailPagePage } from './../time-detail-page/time-detail-page.page';
@@ -16,9 +17,17 @@ export class ListViewTimesModalPage implements OnInit {
   times: TimeWithUsername[];
   project: Project;
   itemChecked: string;
-  constructor(private modalController: ModalController, public popoverController: PopoverController, private timeService: TimeService, private userService: UserService) { }
+  effortInHours:number;
+  effortInDays:string;
+  constructor(private modalController: ModalController, public popoverController: PopoverController, private timeService: TimeService, private userService: UserService, private projectService:ProjectService) { }
 
   ngOnInit() {
+    this.projectService.getEffortInDecimalHours(this.project.id).subscribe(effort => {
+      this.effortInHours = effort;
+      this.effortInDays=(effort/8).toFixed();
+    }, error => {
+      console.log(error)
+    });
   }
   closeModal() {
     this.modalController.dismiss();

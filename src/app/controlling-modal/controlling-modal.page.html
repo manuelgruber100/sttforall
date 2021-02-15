@@ -18,9 +18,11 @@
             Contribution to {{project.title}}
           </ion-card-header>
           <ion-card-content>
-            <canvas #doughnutCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+            <canvas #doughnutCanvas style="position: relative; height:20vh; width:40vw"></canvas><br/>
+            <p>The current effort  in hours is: {{effortInHours}}, in days: ~{{project.actualEffortInDays}} (exact: {{effortInHours/8}})</p>
           </ion-card-content>
         </ion-card>
+        
       </ion-col>
     </ion-row>
     <ion-row>
@@ -32,6 +34,11 @@
       <ion-col>
         <ion-button (click)="percentageList()">
           View percentage list
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="editRightsModal()">
+          Edit rights
         </ion-button>
       </ion-col>
     </ion-row>

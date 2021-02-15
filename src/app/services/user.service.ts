@@ -1,3 +1,4 @@
+import { personsInProject } from './../models/allModels';
 import { Person } from '../models/allModels';
 import { Globals } from './../globals';
 import { Injectable } from '@angular/core';
@@ -39,5 +40,7 @@ export class UserService {
   getOneSpecificUser(id:number){
     return this.http.get<Person>(this.globals.apiUrl + "/people/"+id)
   }
-
+  updateRight(value:personsInProject){
+    return this.http.put(this.globals.apiUrl + "/peopleInProjects/"+value.userId+"/"+value.projectId,value)
+  }
 }

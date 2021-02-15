@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add members</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        <ion-header>
+          Members
+        </ion-header>
+      </ion-col>
+
+      <ion-col>
+        <ion-button (click)="saveChangesRem()">
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-button><br />
+        <ion-button (click)="saveChangesAdd()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-header>
+          No members
+        </ion-header>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-grid>
+
+          <ion-row *ngFor="let item of members">
+            <ion-col>
+              {{item.socialSecurityNumber+": "+item.prename+" "+item.name}}
+            </ion-col>
+            <ion-col>
+              <ion-checkbox (ionChange)="addToRemList(item)" disabled="{{isUserHimself(item.socialSecurityNumber)}}" checked="false"></ion-checkbox>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </ion-col>
+
+      <ion-col>
+
+      </ion-col>
+
+      <ion-col>
+        <ion-grid>
+
+          <ion-row *ngFor="let item of notMembers">
+            <ion-col>
+              {{item.socialSecurityNumber+": "+item.prename+" "+item.name}}
+            </ion-col>
+            <ion-col> <!-- Here no disabled attribute because an admin can add himself! -->
+              <ion-checkbox   (ionChange)="addToAddList(item)" checked="false"></ion-checkbox>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

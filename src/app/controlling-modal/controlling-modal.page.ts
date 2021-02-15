@@ -1,3 +1,5 @@
+import { EditRightsModalPage } from './../edit-rights-modal/edit-rights-modal.page';
+import { ProjectService } from './../services/project.service';
 import { PercentageListModalPage } from './../percentage-list-modal/percentage-list-modal.page';
 import { UserService } from './../services/user.service';
 import { ListViewTimesModalPage } from './../list-view-times-modal/list-view-times-modal.page';
@@ -19,28 +21,31 @@ export class ControllingModalPage implements OnInit {
   project: Project;
   @ViewChild('doughnutCanvas', { static: true }) private doughnutCanvas: ElementRef;
   doughnutChart: any;
-  constructor(private modalController: ModalController, private times: TimeService, private userService: UserService) {
+  effortInHours: number = 0;
+  constructor(private modalController: ModalController, private times: TimeService, private userService: UserService, private projectService: ProjectService) {
 
   }
 
 
   ngOnInit() {
     this.doughnutChartMethod();
+
+    this.projectService.getEffortInDecimalHours(this.project.id).subscribe(effort => {
+      this.effortInHours = effort;
+    }, error => {
+      console.log(error)
+    });
   }
   closeModal() {
     this.modalController.dismiss();
   }
   doughnutChartMethod() {
+
+    var color = [];
     this.times.getTimesSummary(this.project.id).subscribe(t => {
       var timeData: TimeSummaryFromUser[] = t;
       var labelsData: string[] = [];
       var dataData: number[] = [];
-      const colorScheme = [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)'
-      ]
 
       timeData.forEach(element => {
         labelsData.push(element.name)
@@ -48,20 +53,18 @@ export class ControllingModalPage implements OnInit {
       timeData.forEach(element => {
         dataData.push(element.sum)
       });
+      timeData.forEach(element => {
+        color.push(this.getRandomColor());
+      });
       this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-        type: 'doughnut',
+        type: 'pie',
         data: {
           labels: labelsData,
           datasets: [{
             label: '# of hours',
             data: dataData,
-            backgroundColor: [
-              colorScheme.toString()
-            ],
-            hoverBackgroundColor: [
-
-
-            ]
+            backgroundColor: color,
+            hoverBackgroundColor: color,
           }]
         }
       });
@@ -85,13 +88,30 @@ export class ControllingModalPage implements OnInit {
       return await modal.present();
     });
 
-
+  }
+  getRandomColor():string {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 
 
   async percentageList() {
     const modal = await this.modalController.create({
       component: PercentageListModalPage,
+      componentProps: {
+        proId: this.project.id,
+      },
+      cssClass: 'my-class'
+    });
+    return await modal.present();
+  }
+  async editRightsModal(){
+    const modal = await this.modalController.create({
+      component: EditRightsModalPage,
       componentProps: {
         proId: this.project.id,
       },

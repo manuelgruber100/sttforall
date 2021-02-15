@@ -1,3 +1,4 @@
+
 export interface Person {
     socialSecurityNumber: number;
     prename: string;
@@ -36,4 +37,16 @@ export interface TimeWithUsername {
     baseTime:Time
     username:string;
     userrole:string;
+}
+export interface personsInProjectWithWholeUser {
+    user:Person;
+    projectId:number;
+    isProjectOwner:boolean;
+    isProjectManager:boolean;
+}
+export interface personsInProject {
+    userId:number;
+    projectId:number;
+    isProjectOwner:boolean;
+    isProjectManager:boolean;
 }
