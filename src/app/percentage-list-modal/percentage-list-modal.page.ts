@@ -18,15 +18,20 @@ export class PercentageListModalPage implements OnInit {
       this.summary = s;
     })
   }
-  test(hours: number): string {
-    var cachesum = 0;
-    this.summary.forEach(element => {
-      cachesum += element.sum;
-    });
+  calcPercentage(hours: number): string {
+    if (hours == 0) {
+      return String(0);
+    } else {
+      var cachesum = 0;
+      this.summary.forEach(element => {
+        cachesum += element.sum;
+      });
 
-    var sol = (hours / cachesum) * 100
+      var sol = (hours / cachesum) * 100
 
-    return (Math.round(sol * 100) / 100).toFixed(2);;
+      return (Math.round(sol * 100) / 100).toFixed(2);
+    }
+
   }
   closeModal() {
     this.modalController.dismiss();

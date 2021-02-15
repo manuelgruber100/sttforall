@@ -53,15 +53,6 @@ export class EditRightsModalPage implements OnInit {
     return sol;
   }
 
-  async addPeople(){
-    const modal = await this.modalController.create({
-      component: AddUserToProjectModalPage,
-      componentProps:{
-        proId:this.proId
-      },
-      cssClass: 'my-class'
-    });
-    return await modal.present();
-  }
+
 
 }

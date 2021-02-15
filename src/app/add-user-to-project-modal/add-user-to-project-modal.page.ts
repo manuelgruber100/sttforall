@@ -1,3 +1,5 @@
+import { UserService } from './../services/user.service';
+import { TimeService } from './../services/time.service';
 import { Person, personsInProject } from './../models/allModels';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
@@ -18,7 +20,7 @@ export class AddUserToProjectModalPage implements OnInit {
   makeMembers: Person[] = [];
   remMembers: Person[] = [];
 
-  constructor(private modalController: ModalController, private projectService: ProjectService) { }
+  constructor(private modalController: ModalController, private projectService: ProjectService, private userService: UserService) { }
 
   ngOnInit() {
     this.loadMembers();
@@ -77,12 +79,14 @@ export class AddUserToProjectModalPage implements OnInit {
         isProjectManager: false
       }
       this.projectService.makeMember(temp).subscribe(r => {
+        this.userService.callRefreshAfterAdding();
         this.loadMembers();
         this.loadNotMembers();
-        this.makeMembers=[];
-        this.remMembers=[];
+        this.makeMembers = [];
+        this.remMembers = [];
       });
     });
+    
   }
 
   saveChangesRem() {
@@ -94,12 +98,14 @@ export class AddUserToProjectModalPage implements OnInit {
         isProjectManager: false
       }
       this.projectService.removeMember(temp).subscribe(r => {
+        this.userService.callRefreshAfterAdding();
         this.loadNotMembers();
         this.loadMembers();
-        this.makeMembers=[];
-        this.remMembers=[];
+        this.makeMembers = [];
+        this.remMembers = [];
       });
     });
+    
   }
 
 }

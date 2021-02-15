@@ -10,6 +10,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import * as Chart from 'chart.js';
 import { error } from 'protractor';
+import { AddUserToProjectModalPage } from '../add-user-to-project-modal/add-user-to-project-modal.page';
 
 @Component({
   selector: 'app-controlling-modal',
@@ -35,6 +36,11 @@ export class ControllingModalPage implements OnInit {
     }, error => {
       console.log(error)
     });
+    this.userService.refreshNeededAdd.subscribe(r=>{
+      console.log("Refresh after adding members!")
+      this.doughnutChartMethod();
+    })
+
   }
   closeModal() {
     this.modalController.dismiss();
@@ -89,7 +95,7 @@ export class ControllingModalPage implements OnInit {
     });
 
   }
-  getRandomColor():string {
+  getRandomColor(): string {
     var letters = '0123456789ABCDEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
@@ -109,11 +115,21 @@ export class ControllingModalPage implements OnInit {
     });
     return await modal.present();
   }
-  async editRightsModal(){
+  async editRightsModal() {
     const modal = await this.modalController.create({
       component: EditRightsModalPage,
       componentProps: {
         proId: this.project.id,
+      },
+      cssClass: 'my-class'
+    });
+    return await modal.present();
+  }
+  async addPeople() {
+    const modal = await this.modalController.create({
+      component: AddUserToProjectModalPage,
+      componentProps: {
+        proId: this.project.id
       },
       cssClass: 'my-class'
     });
