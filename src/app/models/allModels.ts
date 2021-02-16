@@ -22,7 +22,6 @@ export interface Project {
     status: string;
     actualEffortInDays: number;
     applicantName: number;
-    applicantUnit: string;
     currentType: string;
     decisionState: string;
     dueDate: Date;

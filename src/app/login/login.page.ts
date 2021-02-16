@@ -39,9 +39,9 @@ export class LoginPage implements OnInit {
       console.log("Successfull login!")
 
       var person: Person = this.users.getFromDB(this.usermodel);
-      singleton.setLoggedInUser(person);
-
-      this.router.navigate(['/time']);
+      //singleton.setLoggedInUser(person);
+      //use state to "hide the user id etc... in the parameter"
+      this.router.navigate(['/time',{state: {passedperson: person}}]);
 
     } else {
       this.presentAlertOnFalseLogin();

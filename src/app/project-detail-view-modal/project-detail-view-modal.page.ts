@@ -12,7 +12,7 @@ export class ProjectDetailViewModalPage implements OnInit {
 
   item:Project;
   imglink:string="https://images.pexels.com/photos/7376/startup-photos.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
-  applicantUnit:string="Test";
+  applicantUnit:string="";
   constructor(private modalController: ModalController, private userService:UserService) { }
 
   ngOnInit() {
