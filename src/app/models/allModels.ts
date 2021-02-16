@@ -1,3 +1,4 @@
+
 export interface Person {
     socialSecurityNumber: number;
     prename: string;
@@ -21,7 +22,6 @@ export interface Project {
     status: string;
     actualEffortInDays: number;
     applicantName: number;
-    applicantUnit: string;
     currentType: string;
     decisionState: string;
     dueDate: Date;
@@ -31,4 +31,21 @@ export interface Project {
 export interface TimeSummaryFromUser {
     sum: number;
     name: string;
+}
+export interface TimeWithUsername {
+    baseTime:Time
+    username:string;
+    userrole:string;
+}
+export interface personsInProjectWithWholeUser {
+    user:Person;
+    projectId:number;
+    isProjectOwner:boolean;
+    isProjectManager:boolean;
+}
+export interface personsInProject {
+    userId:number;
+    projectId:number;
+    isProjectOwner:boolean;
+    isProjectManager:boolean;
 }

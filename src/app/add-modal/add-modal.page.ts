@@ -23,7 +23,7 @@ export class AddModalPage implements OnInit {
   };
 
   constructor(private modalController: ModalController, private alertController: AlertController, private times: TimeService) {
-
+    
   }
 
   ngOnInit() {

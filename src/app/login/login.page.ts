@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
 
       var person: Person = this.users.getFromDB(this.usermodel);
       singleton.setLoggedInUser(person);
-
+  
       this.router.navigate(['/time']);
 
     } else {

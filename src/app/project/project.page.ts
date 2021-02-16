@@ -24,7 +24,7 @@ export class ProjectPage implements OnInit {
   }
 
   loadAllProjects() {
-    if (Singleton.getInstance().getLoggedInUser().role == "admin" || Singleton.getInstance().getLoggedInUser().role == "head") {
+    if (Singleton.getInstance().getLoggedInUser().role.toLowerCase() == "admin" || Singleton.getInstance().getLoggedInUser().role == "head") {
       this.projectService.loadAllProjectsFromDB().subscribe(
         p => {
           this.projects = p;

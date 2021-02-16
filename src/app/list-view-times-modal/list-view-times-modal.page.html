@@ -10,5 +10,72 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
 
+      <ion-col>
+        <ion-select (ionChange)="orderTimesBy()" [(ngModel)]="itemChecked" placeholder="Select order-aspect"
+          okText="Okay" cancelText="Cancel">
+          <ion-select-option value="Date">Date</ion-select-option>
+          <ion-select-option value="User">User</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="resetFilter()">Reset</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-toolbar>
+          <ion-searchbar placeholder="Search user" color="primary" (ionInput)="FilterJSONData($event)">
+          </ion-searchbar>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>The current effort  in hours is: {{effortInHours}}, in days: ~{{effortInDays}} (exact: {{effortInHours/8}})</p>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+        <ion-row>
+          <ion-col>
+            Date
+          </ion-col>
+          <ion-col>
+            Hours
+          </ion-col>
+          <ion-col>
+            Name
+          </ion-col>
+          <ion-col>
+            Details
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row *ngFor="let time of times">
+          <ion-col>
+            {{time.baseTime.date | date:'dd.MM.YYYY'}}
+          </ion-col>
+          <ion-col>
+            {{time.baseTime.workedHours}}
+          </ion-col>
+          <ion-col>
+            {{time.username}}
+          </ion-col>
+          <ion-col>
+            <ion-chip color="Secondary" (click)="viewDetailsTimeModal(time)">
+              <ion-icon name="help-circle-outline"></ion-icon>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

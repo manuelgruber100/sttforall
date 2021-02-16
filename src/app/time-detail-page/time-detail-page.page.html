@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Time details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p>Comment: </p>
+      </ion-col>
+      <ion-col>
+        <p>{{time.comment}} </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Activity: </p>
+      </ion-col>
+      <ion-col>
+        <p>{{time.activity}} </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>Account: </p>
+      </ion-col>
+      <ion-col>
+        <p>{{time.account}} </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p>{{name}} total: {{sum}} hours. </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

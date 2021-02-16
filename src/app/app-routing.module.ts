@@ -59,6 +59,22 @@ const routes: Routes = [
     path: 'list-view-times-modal',
     loadChildren: () => import('./list-view-times-modal/list-view-times-modal.module').then( m => m.ListViewTimesModalPageModule)
   },
+  {
+    path: 'time-detail-page',
+    loadChildren: () => import('./time-detail-page/time-detail-page.module').then( m => m.TimeDetailPagePageModule)
+  },
+  {
+    path: 'percentage-list-modal',
+    loadChildren: () => import('./percentage-list-modal/percentage-list-modal.module').then( m => m.PercentageListModalPageModule)
+  },
+  {
+    path: 'edit-rights-modal',
+    loadChildren: () => import('./edit-rights-modal/edit-rights-modal.module').then( m => m.EditRightsModalPageModule)
+  },
+  {
+    path: 'add-user-to-project-modal',
+    loadChildren: () => import('./add-user-to-project-modal/add-user-to-project-modal.module').then( m => m.AddUserToProjectModalPageModule)
+  },
 
 ];
 

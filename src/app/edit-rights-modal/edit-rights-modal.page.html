@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit rights</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        Name
+      </ion-col>
+      <ion-col>
+        Owner
+      </ion-col>
+      <ion-col>
+        Manager
+      </ion-col>
+    </ion-row>
+    
+    <ion-row *ngFor="let item of rightList">
+      <ion-col>
+        {{(item.user.prename)+" "+item.user.name}}
+      </ion-col>
+      <ion-col>
+        <ion-checkbox [(ngModel)]="item.isProjectOwner" disabled="{{isUserHimself(item.user.socialSecurityNumber)}}" checked="{{item.isProjectOwner}}"></ion-checkbox>
+      </ion-col>
+      <ion-col>
+        <ion-checkbox [(ngModel)]="item.isProjectManager" disabled="{{isUserHimself(item.user.socialSecurityNumber)}}" checked="{{item.isProjectManager}}"></ion-checkbox>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="submitNewRights()">
+          Submit
+        </ion-button>
+      </ion-col>
+      
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
